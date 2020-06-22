@@ -16,8 +16,8 @@ const UserSchema = new mongoose.Schema({
 
 const user = mongoose.model("user", UserSchema);
 mongoose.set('useCreateIndex', true);
-mongoose.connect("mongodb+srv://ninjaleo:ninjaleo@ninjaleo-slc2s.gcp.mongodb.net/quote?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
-
+//mongoose.connect("mongodb+srv://ninjaleo:ninjaleo@ninjaleo-slc2s.gcp.mongodb.net/quote?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("mongodb+srv://ninjaleo:ninjaleo@ninjaleo.slc2s.gcp.mongodb.net/leosales?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
 
 const retrieveUserLoginDetails = async (email, password) => {
   try {

@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: backenddeploy
+spec: 
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        name: backend
+    spec:
+      containers: 
+      - name: frontend
+        image: ninjaleo/backend:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3001

@@ -14,4 +14,4 @@ spec:
         image: ninjaleo/backend:latest
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 3001
+        - containerPort: 81

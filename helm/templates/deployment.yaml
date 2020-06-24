@@ -14,3 +14,8 @@ spec:
         image: ninjaleo/backend:latest
         ports:
         - containerPort: 3001
+      tolerations:
+        - key: "name"
+          operation: "Equal"
+          value: "ninja"
+          effect: "NoSchedule"

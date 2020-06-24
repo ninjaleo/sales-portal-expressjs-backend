@@ -16,10 +16,20 @@ app.use(function (req, res, next) {
 app.post('/login', routes)
 app.post('/signup', routes)
 
+app.get("/", async (request, response) => {
+    try {
+        response.send("OK");
+    } catch (error) {
+        response.status(500).send(error);
+    }
+});
+
 app.listen(3001, () => {
     logger.info("xpress Application Server");
     console.log("Express Application Server Is Running At Port 3001");
 });
+
+
 
 
 

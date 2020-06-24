@@ -12,6 +12,5 @@ spec:
       containers: 
       - name: frontend
         image: ninjaleo/backend:latest
-        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3001

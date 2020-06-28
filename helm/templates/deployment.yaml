@@ -14,4 +14,4 @@ spec:
       - name: backend
         image: ninjaleo/backend:latest
         ports:
-        - containerPort: 3001
+        - containerPort: 80

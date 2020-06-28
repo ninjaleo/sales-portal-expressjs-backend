@@ -2,9 +2,15 @@ apiVersion: v1
 kind: Service
 metadata:
   name: backend
+  labels:
+    app: some-app
+    tier: backend
 spec:
+  type: LoadBalancer
   ports:
-    - port: 3001
-      targetPort: 3001
-      protocol: TCP
-
+  - port: 3001
+    targetPort: 3001
+    protocol: TCP
+  selector:
+    app: some-app
+    tier: backend

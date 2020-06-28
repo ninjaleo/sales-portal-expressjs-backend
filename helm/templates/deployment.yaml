@@ -8,11 +8,10 @@ spec:
     metadata:
       labels:
         name: backend
+        app: backendapp
     spec:
       containers: 
-      - name: frontend
+      - name: backend
         image: ninjaleo/backend:latest
         ports:
         - containerPort: 3001
-      nodeSelector:
-        name: ninja

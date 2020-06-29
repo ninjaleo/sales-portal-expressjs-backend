@@ -1,14 +1,16 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backenddeploy
+  labels:
+    app: backend-deployment
 spec: 
   replicas: 1
   template:
     metadata:
       labels:
-        name: backend
-        app: backendapp
+        name: backend-pod
+        app: backend-pod
     spec:
       containers: 
       - name: backend

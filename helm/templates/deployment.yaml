@@ -1,16 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backenddeploy
+  name: node-deployment
   labels:
-    app: backend-deployment
-spec: 
+    app: node-deployment
+spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: node-pod
   template:
     metadata:
+      name: node-pod
       labels:
-        name: backend-pod
-        app: backend-pod
+        app: node-pod
     spec:
       containers: 
       - name: backend

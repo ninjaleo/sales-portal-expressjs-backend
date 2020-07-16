@@ -1,0 +1,71 @@
+pipeline {
+
+  agent any
+   environment {
+       TAG= "latest"
+       registry = "ninjaleo/backend"
+       registryCredential = 'dockerhub'
+       dockerImage = ''
+   }
+    stages {
+        stage('Example') {
+            steps {
+                echo 'Hello welcome to back end jenkins deployment'
+                        }
+        }
+
+        stage("Checkout code") {
+            steps {
+            
+              echo 'Performing code checkout'
+
+               git branch: 'master',
+  
+    url: '''https://github.com/ninjaleo/sales-portal-expressjs-backend-updated.git'''
+            }
+        }
+        
+         stage("Build Image") {
+            steps {
+                echo 'Building docker image'
+               script {
+              //dockerImage = docker.build registry + ":$BUILD_NUMBER"
+             dockerImage = docker.build registry + ":$TAG"
+               
+               }
+               
+            }
+        }
+        
+         stage("Push Image to DockerHub") {
+            steps {
+                echo 'Pushing docker image to docker hub'
+               script {
+             docker.withRegistry( '', registryCredential ) {
+              dockerImage.push()
+               
+               }
+            }
+        }
+    }
+    
+        stage('Deploy to Google Kubernetes') {
+            steps{
+                echo ' checking if deployment and service already exist and terminate'
+			    echo "Deployment started"
+			   // sh 'gcloud config set project ninjaleo'
+			    //sh 'sudo gcloud container clusters get-credentials ninja-kube --zone us-central1-a --project ninjaleo'
+			    sh 'sudo gcloud container clusters get-credentials khids --zone us-central1-a --project learningsabarish'
+			    sh 'helm upgrade backend --recreate-pods --force --install ./helm'
+			    //sh 'helm version'
+			   
+					echo "Deployment Finished"
+            }
+        }
+}
+post { 
+        always { 
+            cleanWs()
+        }
+    }
+}                       
